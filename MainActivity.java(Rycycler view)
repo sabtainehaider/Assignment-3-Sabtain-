@@ -1,0 +1,18 @@
+db.collection("books").addSnapshotListener((value, error) -> {
+    bookList.clear();
+    for (DocumentSnapshot doc : value) {
+        Book book = doc.toObject(Book.class);
+        book.id = doc.getId();
+        bookList.add(book);
+    }
+    adapter.notifyDataSetChanged();
+
+  db.collection("books")
+  .document(book.id)
+  .update("title", newTitle, "author", newAuthor);
+
+  db.collection("books")
+  .document(book.id)
+  .delete();
+
+});
